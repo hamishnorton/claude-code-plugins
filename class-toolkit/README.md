@@ -10,7 +10,7 @@ Generate personalised educational resources for each student in your class from 
 
 ## Installation
 
-Add the `hamishnorton` marketplace, then install the plugin:
+Add the `hamishnorton/claude-code-plugins` marketplace, then install the plugin:
 
 ```
 /plugin marketplace add <owner>/claude-code-plugins
