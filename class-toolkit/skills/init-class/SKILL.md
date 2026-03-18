@@ -44,14 +44,31 @@ Example: "Year 5 Blue" → `year-5-blue`
 Use Glob to check if `{folder-name}/` already exists.
 
 - If it exists, tell the teacher: "A class called '{class name}' already exists. Would you like to add more students to it?"
-- Use AskUserQuestion to confirm. If no, stop. If yes, skip to Step 5.
+- Use AskUserQuestion to confirm. If no, stop. If yes, continue to Step 4, then skip to Step 6.
 
-### Step 4: Create Class Folder
+### Step 4: Create CLAUDE.md
+
+Check if a `CLAUDE.md` file exists in the working directory root.
+
+**If it already exists:** skip this step — do not overwrite it.
+
+**If it does not exist:** create `CLAUDE.md` with the following content:
+
+```
+You are a master expert teacher.
+
+Use the class-toolkit skills to manage classes and generate resources:
+
+- `/class-toolkit:init-class` — set up a class and add students
+- `/class-toolkit:generate-resource` — create personalised resources for each student
+```
+
+### Step 5: Create Class Folder
 
 1. Read the template file at `guides/student-profile-template.md`
 2. Create `{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
 
-### Step 5: Ask for Student Names
+### Step 6: Ask for Student Names
 
 Use AskUserQuestion to ask:
 
@@ -62,7 +79,7 @@ Barry Crump
 Sarah Uma
 Liam 0'Brien"
 
-### Step 6: Create Student Profiles
+### Step 7: Create Student Profiles
 
 For each name the teacher provided:
 
@@ -73,7 +90,7 @@ For each name the teacher provided:
 - Read `guides/student-profile-template.md`
 - Create `{folder-name}/{student-folder-name}/student-profile.md` with the template content
 
-### Step 7: Report and Next Steps
+### Step 8: Report and Next Steps
 
 Summarise what was created:
 
@@ -81,6 +98,7 @@ Summarise what was created:
 - Number of students added
 - List each student name
 - Note any students that were skipped (already existed)
+- If a CLAUDE.md was created, mention it
 
 Then tell the teacher:
 
