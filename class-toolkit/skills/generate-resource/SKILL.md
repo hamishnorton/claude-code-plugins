@@ -11,6 +11,7 @@ Generate a personalised educational resource for every active student.
 ## Arguments
 
 `$ARGUMENTS` is either:
+
 - A **guide name** matching an existing file in `class-agent/guides/` (with or without `.md`)
 - A **new resource prompt** describing what to create (e.g., "Create a 500 word fantasy story about teamwork")
 - **Empty** — prompt the user to select from available guides
@@ -22,6 +23,7 @@ Generate a personalised educational resource for every active student.
 The guides directory is `class-agent/guides/`.
 
 **If `$ARGUMENTS` is empty:**
+
 1. Glob `class-agent/guides/*.md` to list available guide files (exclude `student-profile-template.md`)
 2. If no guides exist, tell the user there are no saved guides and ask them to provide a resource prompt instead, then stop
 3. Present the guides as a numbered list (display the filename without `.md`, replacing hyphens with spaces)
@@ -29,11 +31,13 @@ The guides directory is `class-agent/guides/`.
 5. Read the selected guide file — its full content becomes the resource prompt
 
 **If `$ARGUMENTS` matches a guide file:**
+
 1. Check if a file named `$ARGUMENTS` or `$ARGUMENTS.md` exists in the guides directory
 2. If found, read the file — its full content becomes the resource prompt
 3. Tell the user which guide is being used
 
 **If `$ARGUMENTS` is a new prompt (no matching guide file):**
+
 1. Use `$ARGUMENTS` directly as the resource prompt
 2. Save the prompt to a new guide file in the guides directory:
    - Derive the filename using the same logic as Step 3 below (Title-Case-With-Hyphens.md)
@@ -42,7 +46,7 @@ The guides directory is `class-agent/guides/`.
 
 ### Step 2: Discover Students
 
-Use Glob to find all `**/student-profile.md` files under `class-agent/`. This will find profiles inside class folders (e.g., `class-agent/year-5-blue/arie-norton/student-profile.md`).
+Use Glob to find all `**/student-profile.md` files under `class-agent/`. This will find profiles inside class folders (e.g., `class-agent/year-5-blue/barry-crump/student-profile.md`).
 
 Group the results by **class folder** — the folder directly under `class-agent/` that contains the student (not `guides/`). Derive the class display name by replacing hyphens with spaces and title-casing (e.g., `year-5-blue` → "Year 5 Blue").
 
@@ -55,7 +59,8 @@ Group the results by **class folder** — the folder directly under `class-agent
 For each profile in the selected class(es), read it. Only include students where the frontmatter contains `active: true`.
 
 Extract from each:
-- **Student name**: The student's folder name, replacing hyphens with spaces and title-casing (e.g., `arie-norton` → "Arie Norton")
+
+- **Student name**: The student's folder name, replacing hyphens with spaces and title-casing (e.g., `barry-crump` → "Barry Crump")
 - **Student folder path**: Full path to the student's folder
 - **Profile content**: The full content of `student-profile.md`
 
@@ -64,6 +69,7 @@ If no active students are found, inform the user and stop.
 ### Step 3: Derive Filename
 
 Generate a filename from the resource prompt:
+
 - Extract the key topic words (drop filler words like "create", "a", "the", "word", numbers)
 - Convert to Title-Case-With-Hyphens format
 - Append `.md`
@@ -100,6 +106,7 @@ Write the completed resource to: {student folder path}/{filename}
 ### Step 5: Report
 
 After all agents complete, summarise:
+
 - How many students received the resource
 - The filename used
 - List each student name and confirm their file was created
