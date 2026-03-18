@@ -50,6 +50,8 @@ Use Glob to find all `**/student-profile.md` files in the working directory. Thi
 
 Group the results by **class folder** — the top-level folder that contains the student (not `guides/`). Derive the class display name by replacing hyphens with spaces and title-casing (e.g., `year-5-blue` → "Year 5 Blue").
 
+**Extract the year level** from the class folder name by looking for a pattern like `year-5` or `y5` (a number 1–8). This determines which .docx reference template to use for formatting. If no year level is found in the folder name, default to **2**.
+
 **If one class is found:** use it automatically and tell the teacher which class is being used.
 
 **If multiple classes are found:** use AskUserQuestion to ask which class to generate resources for. List each class name as an option, plus an "All classes" option.
@@ -63,17 +65,19 @@ Extract from each:
 - **Student name**: The student's folder name, replacing hyphens with spaces and title-casing (e.g., `barry-crump` → "Barry Crump")
 - **Student folder path**: Full path to the student's folder
 - **Profile content**: The full content of `student-profile.md`
+- **Year level**: The year level extracted from the class folder (1–8, default 2)
 
 If no active students are found, inform the user and stop.
 
 ### Step 3: Derive Filename
 
-Generate a filename from the resource prompt:
+Generate a base filename from the resource prompt:
 
 - Extract the key topic words (drop filler words like "create", "a", "the", "word", numbers)
 - Convert to Title-Case-With-Hyphens format
-- Append `.md`
-- Example: "Create a 500 word fantasy story about teamwork" → `Fantasy-Story-Teamwork.md`
+- Example: "Create a 500 word fantasy story about teamwork" → `Fantasy-Story-Teamwork`
+
+Each student will receive two files: `{base-filename}.md` and `{base-filename}.docx`.
 
 Tell the user the filename that will be used and list the students who will receive the resource.
 
@@ -100,7 +104,17 @@ You are creating a personalised educational resource for a student.
 - Write the resource in Markdown format
 - Do NOT include YAML frontmatter
 
-Write the completed resource to: {student folder path}/{filename}
+## Step 1: Write the Markdown file
+
+Write the completed resource to: {student folder path}/{base-filename}.md
+
+## Step 2: Convert to Word document
+
+Run this command to convert the Markdown to a formatted .docx using the year-level reference template:
+
+pandoc "{student folder path}/{base-filename}.md" --reference-doc="templates/year-{year-level}-ref.docx" -o "{student folder path}/{base-filename}.docx"
+
+The reference template applies age-appropriate font, size, and spacing automatically. Do not skip this step.
 ```
 
 ### Step 5: Report
@@ -108,6 +122,7 @@ Write the completed resource to: {student folder path}/{filename}
 After all agents complete, summarise:
 
 - How many students received the resource
-- The filename used
-- List each student name and confirm their file was created
-- Note any issues or agents that failed
+- The filenames used (both `.md` and `.docx`)
+- The year level and reference template used for formatting
+- List each student name and confirm both files were created
+- Note any issues or agents that failed (including pandoc conversion failures)
