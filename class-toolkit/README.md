@@ -26,7 +26,7 @@ Replace `<owner>` with the GitHub username or organisation that hosts this repos
 Creates a class folder and a student profile for each student you list.
 
 - Prompts for a class name and student names
-- Creates `class-agent/{class-name}/{student-name}/student-profile.md` for each student
+- Creates `{class-name}/{student-name}/student-profile.md` for each student
 - Can add students to an existing class
 
 ### `/class-toolkit:generate-resource [prompt or guide name]`
@@ -40,7 +40,7 @@ Generates a personalised resource for every active student in a class.
 
 ## Guides
 
-Resource prompts are saved as reusable guides in `class-agent/guides/`. The plugin includes three examples:
+Resource prompts are saved as reusable guides in `guides/`. The plugin includes three examples:
 
 - **Fantasy Story Perseverance** — a 300 word fantasy story about perseverance
 - **Find Adjectives** — a word find looking for 10 adjectives

@@ -12,7 +12,7 @@ Generate a personalised educational resource for every active student.
 
 `$ARGUMENTS` is either:
 
-- A **guide name** matching an existing file in `class-agent/guides/` (with or without `.md`)
+- A **guide name** matching an existing file in `guides/` (with or without `.md`)
 - A **new resource prompt** describing what to create (e.g., "Create a 500 word fantasy story about teamwork")
 - **Empty** — prompt the user to select from available guides
 
@@ -20,11 +20,11 @@ Generate a personalised educational resource for every active student.
 
 ### Step 1: Resolve the Resource Prompt
 
-The guides directory is `class-agent/guides/`.
+The guides directory is `guides/`.
 
 **If `$ARGUMENTS` is empty:**
 
-1. Glob `class-agent/guides/*.md` to list available guide files (exclude `student-profile-template.md`)
+1. Glob `guides/*.md` to list available guide files (exclude `student-profile-template.md`)
 2. If no guides exist, tell the user there are no saved guides and ask them to provide a resource prompt instead, then stop
 3. Present the guides as a numbered list (display the filename without `.md`, replacing hyphens with spaces)
 4. Use AskUserQuestion to ask the user which guide to use
@@ -46,9 +46,9 @@ The guides directory is `class-agent/guides/`.
 
 ### Step 2: Discover Students
 
-Use Glob to find all `**/student-profile.md` files under `class-agent/`. This will find profiles inside class folders (e.g., `class-agent/year-5-blue/barry-crump/student-profile.md`).
+Use Glob to find all `**/student-profile.md` files in the working directory. This will find profiles inside class folders (e.g., `year-5-blue/barry-crump/student-profile.md`).
 
-Group the results by **class folder** — the folder directly under `class-agent/` that contains the student (not `guides/`). Derive the class display name by replacing hyphens with spaces and title-casing (e.g., `year-5-blue` → "Year 5 Blue").
+Group the results by **class folder** — the top-level folder that contains the student (not `guides/`). Derive the class display name by replacing hyphens with spaces and title-casing (e.g., `year-5-blue` → "Year 5 Blue").
 
 **If one class is found:** use it automatically and tell the teacher which class is being used.
 

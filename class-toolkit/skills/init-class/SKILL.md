@@ -6,7 +6,7 @@ argument-hint: "[class name]"
 
 # Initialise Class
 
-Create a new class folder under `class-agent/` and generate a student profile for each student.
+Create a new class folder and generate a student profile for each student.
 
 ## Arguments
 
@@ -41,15 +41,15 @@ Example: "Year 5 Blue" → `year-5-blue`
 
 ### Step 3: Check for Existing Class
 
-Use Glob to check if `class-agent/{folder-name}/` already exists.
+Use Glob to check if `{folder-name}/` already exists.
 
 - If it exists, tell the teacher: "A class called '{class name}' already exists. Would you like to add more students to it?"
 - Use AskUserQuestion to confirm. If no, stop. If yes, skip to Step 5.
 
 ### Step 4: Create Class Folder
 
-1. Read the template file at `class-agent/guides/student-profile-template.md`
-2. Create `class-agent/{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
+1. Read the template file at `guides/student-profile-template.md`
+2. Create `{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
 
 ### Step 5: Ask for Student Names
 
@@ -70,8 +70,8 @@ For each name the teacher provided:
 - Convert the name to a folder-safe format (lowercase, spaces to hyphens, strip apostrophes and special characters)
   - Example: "Barry Crump" → `barry-crump`, "Liam O'Brien" → `liam-obrien`
 - If the student folder already exists within this class, skip it and note it in the report
-- Read `class-agent/guides/student-profile-template.md`
-- Create `class-agent/{folder-name}/{student-folder-name}/student-profile.md` with the template content
+- Read `guides/student-profile-template.md`
+- Create `{folder-name}/{student-folder-name}/student-profile.md` with the template content
 
 ### Step 7: Report and Next Steps
 
@@ -86,7 +86,7 @@ Then tell the teacher:
 
 "Your class is set up! Each student has a profile at:
 
-class-agent/{folder-name}/{student-name}/student-profile.md
+{folder-name}/{student-name}/student-profile.md
 
 To personalise resources for your students, open each profile and fill in their:
 
