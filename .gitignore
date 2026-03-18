@@ -4,6 +4,3 @@ Thumbs.db
 
 # Claude Code
 .claude/
-
-# Generated docs
-*.docx
