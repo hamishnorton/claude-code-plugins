@@ -1,0 +1,16 @@
+{
+  "name": "hamishnorton",
+  "owner": {
+    "name": "Hamish Norton"
+  },
+  "metadata": {
+    "description": "Hamish Norton's Claude Code plugin marketplace"
+  },
+  "plugins": [
+    {
+      "name": "class-toolkit",
+      "source": "./class-toolkit",
+      "description": "Generate personalised educational resources for each student from a single prompt"
+    }
+  ]
+}

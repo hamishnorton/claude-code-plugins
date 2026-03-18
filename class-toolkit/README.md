@@ -10,11 +10,14 @@ Generate personalised educational resources for each student in your class from 
 
 ## Installation
 
-Install from the `galvanize` marketplace:
+Add the `hamishnorton` marketplace, then install the plugin:
 
 ```
-/plugin install class-toolkit@galvanize
+/plugin marketplace add <owner>/claude-code-plugins
+/plugin install class-toolkit@hamishnorton
 ```
+
+Replace `<owner>` with the GitHub username or organisation that hosts this repository.
 
 ## Skills
 
