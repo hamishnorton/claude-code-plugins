@@ -2,6 +2,10 @@
 
 Generate personalised educational resources for each student in your class from a single prompt.
 
+## Prerequisites
+
+- [Pandoc](https://pandoc.org/installing.html) — required by `generate-resource` to create Word documents
+
 ## How it works
 
 1. **Set up your class** — run `/class-toolkit:init-class` to create a class and add student names
