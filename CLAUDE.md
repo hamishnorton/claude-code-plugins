@@ -14,21 +14,6 @@ Plugins follow the Claude Code plugin convention:
 - `guides/` — reusable resource prompt templates
 - `templates/` — pandoc reference `.docx` files for year-level formatting
 
-## class-toolkit Plugin
-
-An educational tool for teachers to generate personalised resources for students. Two skills:
-- **init-class** — creates class folders with student profile scaffolding
-- **generate-resource** — launches parallel agents to create personalised `.md` and `.docx` resources per student, using pandoc with year-level reference templates
-
-The generate-resource skill discovers students via `**/student-profile.md` glob, extracts year level from the class folder name (e.g. `year-5-blue` → year 5), and uses the corresponding `templates/year-{N}-ref.docx` for pandoc conversion.
-
-## Key Commands
-
-Regenerate the pandoc reference templates (requires pandoc installed):
-```
-python3 class-toolkit/generate-templates.py
-```
-
 ## Commit Convention
 
 Use conventional commits scoped to the plugin name:
