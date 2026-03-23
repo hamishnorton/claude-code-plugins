@@ -1,14 +1,14 @@
 {
   "name": "class-toolkit",
   "description": "Generate personalised educational resources for each student in the class",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "command -v pandoc >/dev/null 2>&1 || echo '[class-toolkit] Warning: pandoc is not installed. The generate-resource skill requires pandoc to create Word documents. Install with: brew install pandoc (macOS) or sudo apt-get install pandoc (Linux)'"
+            "command": "pandoc --version || echo \"[class-toolkit] pandoc is not installed. The generate-resource skill requires pandoc to create Word documents. Install with: brew install pandoc (macOS), sudo apt-get install pandoc (Linux), or winget install JohnMacFarlane.Pandoc (Windows)\""
           }
         ]
       }

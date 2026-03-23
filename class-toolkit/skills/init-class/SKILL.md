@@ -74,7 +74,9 @@ Check if `templates/year-1-ref.docx` already exists in the working directory.
 1. Use Glob to find `**/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
 2. Derive the source directory from the matched path (strip the filename)
 3. Create a `templates/` directory in the working directory
-4. Use Bash to copy all year-level reference templates: `cp {source-directory}/year-*-ref.docx templates/`
+4. Use Bash to copy all year-level reference templates using the platform-appropriate command:
+   - **Linux/macOS:** `cp {source-directory}/year-*-ref.docx templates/`
+   - **Windows:** `Copy-Item -Path "{source-directory}\year-*-ref.docx" -Destination "templates\"`
 5. Tell the teacher: "Formatting templates have been copied to `templates/`. These are used by pandoc to apply age-appropriate fonts and spacing when generating Word documents."
 
 If the templates cannot be found, warn the teacher and continue — resources will still generate as Markdown, but .docx formatting will use pandoc defaults.

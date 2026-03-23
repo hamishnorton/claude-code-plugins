@@ -92,7 +92,9 @@ Before generating resources, check if `templates/year-1-ref.docx` exists in the 
 1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
 2. Derive the source directory from the matched path (strip the filename)
 3. Create a `templates/` directory in the working directory
-4. Use Bash to copy all year-level reference templates: `cp {source-directory}/year-*-ref.docx templates/`
+4. Use Bash to copy all year-level reference templates using the platform-appropriate command:
+   - **Linux/macOS:** `cp {source-directory}/year-*-ref.docx templates/`
+   - **Windows:** `Copy-Item -Path "{source-directory}\year-*-ref.docx" -Destination "templates\"`
 5. Tell the teacher that formatting templates have been copied
 
 If the templates cannot be found, warn the teacher that .docx files will use pandoc's default formatting instead of year-appropriate styles, then continue.
