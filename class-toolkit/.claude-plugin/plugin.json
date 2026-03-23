@@ -8,7 +8,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "pandoc --version || echo \"[class-toolkit] pandoc is not installed. The generate-resource skill requires pandoc to create Word documents. Install with: brew install pandoc (macOS), sudo apt-get install pandoc (Linux), or winget install JohnMacFarlane.Pandoc (Windows)\""
+            "command": "pandoc --version || echo \"[class-toolkit] pandoc is not installed. The generate-resource skill requires pandoc to create Word documents. Install from: https://pandoc.org/installing.html\""
           }
         ]
       }
