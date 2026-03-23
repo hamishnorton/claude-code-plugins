@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a Claude Code plugin repository. Each top-level directory is a standalone plugin that can be installed via the Claude Code plugin marketplace. Currently contains one plugin: **class-toolkit**.
 
+See the [Claude Code plugin docs](https://docs.anthropic.com/en/docs/claude-code/plugins) for the plugin convention reference.
+
 ## Repository Structure
 
 Plugins follow the Claude Code plugin convention:

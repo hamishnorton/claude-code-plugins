@@ -59,8 +59,8 @@ You are a master expert teacher.
 
 Use the class-toolkit skills to manage classes and generate resources:
 
-- `/class-toolkit:init-class` — set up a class and add students
-- `/class-toolkit:generate-resource` — create personalised resources for each student
+- `/init-class` — set up a class and add students
+- `/generate-resource` — create personalised resources for each student
 ```
 
 ### Step 5: Copy Formatting Templates
@@ -71,7 +71,7 @@ Check if `templates/year-1-ref.docx` already exists in the working directory.
 
 **If it does not exist:**
 
-1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
+1. Use Glob to find `**/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
 2. Derive the source directory from the matched path (strip the filename)
 3. Create a `templates/` directory in the working directory
 4. Use Bash to copy all year-level reference templates: `cp {source-directory}/year-*-ref.docx templates/`
