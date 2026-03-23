@@ -63,12 +63,28 @@ Use the class-toolkit skills to manage classes and generate resources:
 - `/class-toolkit:generate-resource` — create personalised resources for each student
 ```
 
-### Step 5: Create Class Folder
+### Step 5: Copy Formatting Templates
+
+Check if `templates/year-1-ref.docx` already exists in the working directory.
+
+**If it exists:** skip this step — templates are already in place.
+
+**If it does not exist:**
+
+1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
+2. Derive the source directory from the matched path (strip the filename)
+3. Create a `templates/` directory in the working directory
+4. Use Bash to copy all year-level reference templates: `cp {source-directory}/year-*-ref.docx templates/`
+5. Tell the teacher: "Formatting templates have been copied to `templates/`. These are used by pandoc to apply age-appropriate fonts and spacing when generating Word documents."
+
+If the templates cannot be found, warn the teacher and continue — resources will still generate as Markdown, but .docx formatting will use pandoc defaults.
+
+### Step 6: Create Class Folder
 
 1. Read the template file at `guides/student-profile-template.md`
 2. Create `{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
 
-### Step 6: Ask for Student Names
+### Step 7: Ask for Student Names
 
 Use AskUserQuestion to ask:
 
@@ -79,7 +95,7 @@ Barry Crump
 Sarah Uma
 Liam 0'Brien"
 
-### Step 7: Create Student Profiles
+### Step 8: Create Student Profiles
 
 For each name the teacher provided:
 
@@ -90,7 +106,7 @@ For each name the teacher provided:
 - Read `guides/student-profile-template.md`
 - Create `{folder-name}/{student-folder-name}/student-profile.md` with the template content
 
-### Step 8: Report and Next Steps
+### Step 9: Report and Next Steps
 
 Summarise what was created:
 

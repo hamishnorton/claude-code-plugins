@@ -81,7 +81,23 @@ Each student will receive two files: `{base-filename}.md` and `{base-filename}.d
 
 Tell the user the filename that will be used and list the students who will receive the resource.
 
-### Step 4: Generate Resources in Parallel
+### Step 4: Ensure Templates Are Available
+
+Before generating resources, check if `templates/year-1-ref.docx` exists in the working directory.
+
+**If it exists:** continue to Step 5.
+
+**If it does not exist:**
+
+1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
+2. Derive the source directory from the matched path (strip the filename)
+3. Create a `templates/` directory in the working directory
+4. Use Bash to copy all year-level reference templates: `cp {source-directory}/year-*-ref.docx templates/`
+5. Tell the teacher that formatting templates have been copied
+
+If the templates cannot be found, warn the teacher that .docx files will use pandoc's default formatting instead of year-appropriate styles, then continue.
+
+### Step 5: Generate Resources in Parallel
 
 Launch one Agent per student **in a single message** (parallel execution). Each agent should be `general-purpose` type.
 
@@ -117,7 +133,7 @@ pandoc "{student folder path}/{base-filename}.md" --reference-doc="templates/yea
 The reference template applies age-appropriate font, size, and spacing automatically. Do not skip this step.
 ```
 
-### Step 5: Report
+### Step 6: Report
 
 After all agents complete, summarise:
 
