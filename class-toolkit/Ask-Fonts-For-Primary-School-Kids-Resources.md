@@ -18,8 +18,7 @@ For primary school resources, readability research and educational publisher sta
 - **Andika** (free, Google Fonts) — designed specifically for new readers, clear letterforms
 - **OpenDyslexic** — good for inclusivity, though polarizing among teachers
 - **Comic Sans** — genuinely good for early readers despite its reputation; clear `a` and `g` letterforms
-- **Sassoon Primary** — the gold standard in UK/NZ primary education, but paid
-- **Century Gothic** — free alternative with good legibility
+- **URW Gothic** — free alternative with good legibility (similar to URW Gothic)
 
 **Avoid:** Serif fonts (Times, Georgia), condensed fonts, or any with ambiguous `a`/`g` letterforms.
 
@@ -78,7 +77,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Andika or Century Gothic |
+| **Font** | Andika or URW Gothic |
 | **Size** | 18–20pt |
 | **Line spacing** | 1.75× |
 | **Letter spacing** | +0.75pt |
@@ -89,7 +88,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Andika or Century Gothic |
+| **Font** | Andika or URW Gothic |
 | **Size** | 16–18pt |
 | **Line spacing** | 1.75× |
 | **Letter spacing** | +0.5pt |
@@ -100,7 +99,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Century Gothic or Andika |
+| **Font** | URW Gothic or Andika |
 | **Size** | 14–16pt |
 | **Line spacing** | 1.5× |
 | **Letter spacing** | +0.5pt |
@@ -111,7 +110,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Century Gothic or Verdana |
+| **Font** | URW Gothic or Verdana |
 | **Size** | 13–14pt |
 | **Line spacing** | 1.5× |
 | **Letter spacing** | Normal |
@@ -122,7 +121,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Century Gothic, Verdana, or Calibri |
+| **Font** | URW Gothic, Verdana, or Carlito |
 | **Size** | 12–13pt |
 | **Line spacing** | 1.5× |
 | **Letter spacing** | Normal |
@@ -133,7 +132,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Calibri, Verdana, or Century Gothic |
+| **Font** | Carlito, Verdana, or URW Gothic |
 | **Size** | 11–12pt |
 | **Line spacing** | 1.5× |
 | **Letter spacing** | Normal |
