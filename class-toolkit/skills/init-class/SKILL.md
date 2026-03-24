@@ -55,7 +55,7 @@ Check if a `CLAUDE.md` file exists in the working directory root.
 **If it does not exist:** create `CLAUDE.md` with the following content:
 
 ```
-You are a master expert teacher.
+You are a expert teacher.
 
 Use the class-toolkit skills to manage classes and generate resources:
 
@@ -74,15 +74,15 @@ Check if `templates/year-1-ref.docx` already exists in the working directory.
 1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed directory
 2. Derive the **plugin directory** from the matched path (two levels up from `templates/year-1-ref.docx`)
 3. Create `templates/` and `fonts/andika/` directories in the working directory
-4. Use Bash to copy templates, fonts, and the embedding script using the platform-appropriate commands:
+4. Copy templates, fonts, and the embedding script using the platform-appropriate commands:
    - **Linux/macOS:**
-     ```
+     ```bash
      cp {plugin-dir}/templates/year-*-ref.docx templates/
      cp -r {plugin-dir}/fonts/andika/ fonts/andika/
      cp {plugin-dir}/embed-fonts.py embed-fonts.py
      ```
    - **Windows:**
-     ```
+     ```powershell
      Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "templates\"
      Copy-Item -Path "{plugin-dir}\fonts\andika" -Destination "fonts\andika" -Recurse
      Copy-Item -Path "{plugin-dir}\embed-fonts.py" -Destination "embed-fonts.py"
