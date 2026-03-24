@@ -81,7 +81,7 @@ Each student will receive two files: `{base-filename}.md` and `{base-filename}.d
 
 Tell the user the filename that will be used and list the students who will receive the resource.
 
-### Step 4: Ensure Templates Are Available
+### Step 4: Ensure Templates and Fonts Are Available
 
 Before generating resources, check if `templates/year-1-ref.docx` exists in the working directory.
 
@@ -89,13 +89,23 @@ Before generating resources, check if `templates/year-1-ref.docx` exists in the 
 
 **If it does not exist:**
 
-1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
-2. Derive the source directory from the matched path (strip the filename)
-3. Create a `templates/` directory in the working directory
-4. Use Bash to copy all year-level reference templates using the platform-appropriate command:
-   - **Linux/macOS:** `cp {source-directory}/year-*-ref.docx templates/`
-   - **Windows:** `Copy-Item -Path "{source-directory}\year-*-ref.docx" -Destination "templates\"`
-5. Tell the teacher that formatting templates have been copied
+1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed directory
+2. Derive the **plugin directory** from the matched path (two levels up from `templates/year-1-ref.docx`)
+3. Create `templates/` and `fonts/andika/` directories in the working directory
+4. Use Bash to copy templates, fonts, and the embedding script using the platform-appropriate commands:
+   - **Linux/macOS:**
+     ```
+     cp {plugin-dir}/templates/year-*-ref.docx templates/
+     cp -r {plugin-dir}/fonts/andika/ fonts/andika/
+     cp {plugin-dir}/embed-fonts.py embed-fonts.py
+     ```
+   - **Windows:**
+     ```
+     Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "templates\"
+     Copy-Item -Path "{plugin-dir}\fonts\andika" -Destination "fonts\andika" -Recurse
+     Copy-Item -Path "{plugin-dir}\embed-fonts.py" -Destination "embed-fonts.py"
+     ```
+5. Tell the teacher that formatting templates and fonts have been copied
 
 If the templates cannot be found, warn the teacher that .docx files will use pandoc's default formatting instead of year-appropriate styles, then continue.
 
@@ -133,6 +143,14 @@ Run this command to convert the Markdown to a formatted .docx using the year-lev
 pandoc "{student folder path}/{base-filename}.md" --reference-doc="templates/year-{year-level}-ref.docx" -o "{student folder path}/{base-filename}.docx"
 
 The reference template applies age-appropriate font, size, and spacing automatically. Do not skip this step.
+
+## Step 3: Embed fonts
+
+Run this command to embed the Andika font into the .docx so it renders correctly on any computer:
+
+python3 embed-fonts.py "{student folder path}/{base-filename}.docx" fonts/andika
+
+This ensures the document looks correct even if Andika is not installed on the reader's computer. Do not skip this step.
 ```
 
 ### Step 6: Report

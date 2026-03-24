@@ -63,7 +63,7 @@ Use the class-toolkit skills to manage classes and generate resources:
 - `/generate-resource` — create personalised resources for each student
 ```
 
-### Step 5: Copy Formatting Templates
+### Step 5: Copy Formatting Templates and Fonts
 
 Check if `templates/year-1-ref.docx` already exists in the working directory.
 
@@ -71,13 +71,23 @@ Check if `templates/year-1-ref.docx` already exists in the working directory.
 
 **If it does not exist:**
 
-1. Use Glob to find `**/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed templates directory
-2. Derive the source directory from the matched path (strip the filename)
-3. Create a `templates/` directory in the working directory
-4. Use Bash to copy all year-level reference templates using the platform-appropriate command:
-   - **Linux/macOS:** `cp {source-directory}/year-*-ref.docx templates/`
-   - **Windows:** `Copy-Item -Path "{source-directory}\year-*-ref.docx" -Destination "templates\"`
-5. Tell the teacher: "Formatting templates have been copied to `templates/`. These are used by pandoc to apply age-appropriate fonts and spacing when generating Word documents."
+1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed directory
+2. Derive the **plugin directory** from the matched path (two levels up from `templates/year-1-ref.docx`)
+3. Create `templates/` and `fonts/andika/` directories in the working directory
+4. Use Bash to copy templates, fonts, and the embedding script using the platform-appropriate commands:
+   - **Linux/macOS:**
+     ```
+     cp {plugin-dir}/templates/year-*-ref.docx templates/
+     cp -r {plugin-dir}/fonts/andika/ fonts/andika/
+     cp {plugin-dir}/embed-fonts.py embed-fonts.py
+     ```
+   - **Windows:**
+     ```
+     Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "templates\"
+     Copy-Item -Path "{plugin-dir}\fonts\andika" -Destination "fonts\andika" -Recurse
+     Copy-Item -Path "{plugin-dir}\embed-fonts.py" -Destination "embed-fonts.py"
+     ```
+5. Tell the teacher: "Formatting templates and Andika font have been copied. These are used by pandoc to create Word documents with age-appropriate fonts and spacing that work on any computer."
 
 If the templates cannot be found, warn the teacher and continue — resources will still generate as Markdown, but .docx formatting will use pandoc defaults.
 

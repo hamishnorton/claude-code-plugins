@@ -35,7 +35,7 @@ Early readers rely heavily on letter shape recognition. The font should perfectl
 Students at this stage are building reading stamina. You can introduce standard "double-story" letters (the standard **a** and **g**) as they transition to reading conventional printed books.
 
 * **Best Fonts:** Clean, highly legible sans-serifs. 
-    * **Arial, Tahoma, Verdana, Carlito.** (Verdana is particularly strong here due to its wide letter spacing and tall lowercase letters).
+    * **Liberation Sans, DejaVu Sans, Carlito.** (DejaVu Sans is particularly strong here due to its wide letter spacing and tall lowercase letters).
 * **Font Size:** 14 pt to 16 pt.
 * **Line Spacing:** 1.5.
 * **Letter Spacing:** Standard to very slightly loose.
@@ -45,8 +45,8 @@ Students at this stage are building reading stamina. You can introduce standard 
 These students are reading chapter books and processing more complex worksheet instructions. The goal is to reduce visual fatigue over longer reading periods.
 
 * **Best Fonts:** You can continue with standard sans-serifs for worksheets and UI, but this is the ideal time to introduce clean **serif** fonts for longer reading passages, as serifs help guide the eye along the baseline of the text.
-    * *Sans-serif:* **Arial, Verdana, Roboto.**
-    * *Serif:* **Georgia, Lora.** (Georgia is an excellent digital-first serif that remains highly readable).
+    * *Sans-serif:* **Liberation Sans, DejaVu Sans, Roboto.**
+    * *Serif:* **Noto Serif, Lora.** (Noto Serif is an excellent digital-first serif that remains highly readable).
 * **Font Size:** 12 pt to 14 pt. (14 pt is still the recommended minimum for accessible/dyslexia-friendly documents).
 * **Line Spacing:** 1.2 to 1.5.
 * **Letter Spacing:** Standard.
@@ -56,7 +56,7 @@ These students are reading chapter books and processing more complex worksheet i
 At the intermediate level, students are preparing for the formatting expectations of high school and NCEA. Resources should mimic standard academic and publishing layouts, though readability remains key.
 
 * **Best Fonts:** Standard academic typefaces. 
-    * **Arial, Carlito, Georgia, Times New Roman.** (Note: The MoE's own corporate style relies heavily on Montserrat, which is also a clean, geometric option if you have access to it).
+    * **Liberation Sans, Carlito, Noto Serif, Liberation Serif.** (Note: The MoE's own corporate style relies heavily on Montserrat, which is also a clean, geometric option if you have access to it).
 * **Font Size:** 11 pt to 12 pt. (12 pt is the standard requirement for most NZ academic and high-school assignment writing).
 * **Line Spacing:** 1.15 to 1.5. (1.5 spacing is standard for drafted assignments to allow for teacher annotations).
 * **Letter Spacing:** Standard.
@@ -65,4 +65,4 @@ At the intermediate level, students are preparing for the formatting expectation
 
 ### A Quick Note on Dyslexia and Inclusive Education
 
-If you are creating resources for a mixed-ability classroom, it is always safest to default to **accessibility standards**. The New Zealand guidelines for inclusive education recommend maintaining a minimum font size of **12 pt to 14 pt**, using plain sans-serif fonts (like Arial or Verdana), and sticking to **1.5 line spacing** regardless of the year level. What works best for a dyslexic student will invariably make reading easier for the rest of the class as well.
+If you are creating resources for a mixed-ability classroom, it is always safest to default to **accessibility standards**. The New Zealand guidelines for inclusive education recommend maintaining a minimum font size of **12 pt to 14 pt**, using plain sans-serif fonts (like Liberation Sans or DejaVu Sans), and sticking to **1.5 line spacing** regardless of the year level. What works best for a dyslexic student will invariably make reading easier for the rest of the class as well.

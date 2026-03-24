@@ -17,7 +17,7 @@ For primary school resources, readability research and educational publisher sta
 **Best options:**
 - **Andika** (free, Google Fonts) — designed specifically for new readers, clear letterforms
 - **OpenDyslexic** — good for inclusivity, though polarizing among teachers
-- **Comic Sans** — genuinely good for early readers despite its reputation; clear `a` and `g` letterforms
+- **Comic Neue** — genuinely good for early readers despite its reputation; clear `a` and `g` letterforms
 - **URW Gothic** — free alternative with good legibility (similar to URW Gothic)
 
 **Avoid:** Serif fonts (Times, Georgia), condensed fonts, or any with ambiguous `a`/`g` letterforms.
@@ -40,7 +40,7 @@ For primary school resources, readability research and educational publisher sta
 - **Avoid ALL CAPS** — harder to decode than mixed case
 - **Cream/off-white backgrounds** reduce glare and help dyslexic readers
 
-For NZ primary context, **Andika** (free) or **Comic Sans** at 14–16pt with 1.5× line spacing is a solid, accessible default.
+For NZ primary context, **Andika** (free) or **Comic Neue** at 14–16pt with 1.5× line spacing is a solid, accessible default.
 
 ---
 Create front settings to use for each year level from year 1 to 8.
@@ -55,7 +55,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Andika or Comic Sans |
+| **Font** | Andika or Comic Neue |
 | **Size** | 22–24pt |
 | **Line spacing** | 2.0× |
 | **Letter spacing** | +1pt |
@@ -66,7 +66,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Andika or Comic Sans |
+| **Font** | Andika or Comic Neue |
 | **Size** | 20–22pt |
 | **Line spacing** | 2.0× |
 | **Letter spacing** | +1pt |
@@ -110,7 +110,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | URW Gothic or Verdana |
+| **Font** | URW Gothic or DejaVu Sans |
 | **Size** | 13–14pt |
 | **Line spacing** | 1.5× |
 | **Letter spacing** | Normal |
@@ -121,7 +121,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | URW Gothic, Verdana, or Carlito |
+| **Font** | URW Gothic, DejaVu Sans, or Carlito |
 | **Size** | 12–13pt |
 | **Line spacing** | 1.5× |
 | **Letter spacing** | Normal |
@@ -132,7 +132,7 @@ Here are recommended font settings for each NZ primary school year level:
 
 | Setting | Value |
 |---|---|
-| **Font** | Carlito, Verdana, or URW Gothic |
+| **Font** | Carlito, DejaVu Sans, or URW Gothic |
 | **Size** | 11–12pt |
 | **Line spacing** | 1.5× |
 | **Letter spacing** | Normal |

@@ -7,7 +7,6 @@ markdown resources to properly formatted .docx files.
 """
 
 import os
-import shutil
 import subprocess
 import tempfile
 import xml.etree.ElementTree as ET
@@ -22,16 +21,20 @@ R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
 ET.register_namespace("w", W)
 ET.register_namespace("r", R)
 
+# Andika (SIL OFL) — designed for literacy, single-story a/g, excellent macron support.
+# Embedded into output DOCX files post-pandoc so templates work on any OS.
+EMBEDDED_FONT = "Andika"
+
 # Year-level font settings from research
 YEAR_SETTINGS = {
-    1: {"font": "Comic Sans MS", "body_size": 48, "heading_size": 56, "line_spacing": 480, "letter_spacing": 20},
-    2: {"font": "Comic Sans MS", "body_size": 44, "heading_size": 52, "line_spacing": 480, "letter_spacing": 20},
-    3: {"font": "Century Gothic", "body_size": 40, "heading_size": 48, "line_spacing": 420, "letter_spacing": 15},
-    4: {"font": "Century Gothic", "body_size": 36, "heading_size": 44, "line_spacing": 420, "letter_spacing": 10},
-    5: {"font": "Century Gothic", "body_size": 32, "heading_size": 40, "line_spacing": 360, "letter_spacing": 10},
-    6: {"font": "Century Gothic", "body_size": 28, "heading_size": 36, "line_spacing": 360, "letter_spacing": 0},
-    7: {"font": "Calibri",        "body_size": 26, "heading_size": 34, "line_spacing": 360, "letter_spacing": 0},
-    8: {"font": "Calibri",        "body_size": 24, "heading_size": 32, "line_spacing": 360, "letter_spacing": 0},
+    1: {"body_size": 48, "heading_size": 56, "line_spacing": 480, "letter_spacing": 20},
+    2: {"body_size": 44, "heading_size": 52, "line_spacing": 480, "letter_spacing": 20},
+    3: {"body_size": 40, "heading_size": 48, "line_spacing": 420, "letter_spacing": 15},
+    4: {"body_size": 36, "heading_size": 44, "line_spacing": 420, "letter_spacing": 10},
+    5: {"body_size": 32, "heading_size": 40, "line_spacing": 360, "letter_spacing": 10},
+    6: {"body_size": 28, "heading_size": 36, "line_spacing": 360, "letter_spacing": 0},
+    7: {"body_size": 26, "heading_size": 34, "line_spacing": 360, "letter_spacing": 0},
+    8: {"body_size": 24, "heading_size": 32, "line_spacing": 360, "letter_spacing": 0},
 }
 # Note: sizes are in half-points (Word convention). 24 half-points = 12pt.
 # line_spacing is in 240ths of a line (240 = single, 360 = 1.5, 480 = double).
@@ -40,6 +43,7 @@ YEAR_SETTINGS = {
 
 def w_tag(local):
     return f"{{{W}}}{local}"
+
 
 
 def set_font_on_rpr(rpr, font_name):
@@ -122,7 +126,7 @@ HEADING_STYLES = {"Title", "Subtitle", "Heading1", "Heading2", "Heading3", "Head
 def modify_styles_xml(styles_xml_bytes, year_level):
     """Modify styles.xml with year-level-appropriate settings."""
     settings = YEAR_SETTINGS[year_level]
-    font = settings["font"]
+    font = EMBEDDED_FONT
     body_size = settings["body_size"]
     heading_size = settings["heading_size"]
     line_spacing = settings["line_spacing"]
@@ -229,12 +233,14 @@ def main():
             check=True,
         )
 
+        print(f"Font: {EMBEDDED_FONT}\n")
+
         for year in range(1, 9):
             path = generate_template(year, base_path)
             settings = YEAR_SETTINGS[year]
             print(
                 f"Created year-{year}-ref.docx  "
-                f"({settings['font']}, {settings['body_size']//2}pt body, "
+                f"({EMBEDDED_FONT}, {settings['body_size']//2}pt body, "
                 f"{settings['line_spacing']/240:.1f}x spacing)"
             )
     finally:
