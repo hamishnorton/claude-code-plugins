@@ -63,7 +63,7 @@ Use the class-toolkit skills to manage classes and generate resources:
 - `/generate-resource` — create personalised resources for each student
 ```
 
-### Step 5: Copy Formatting Templates and Fonts
+### Step 5: Copy Formatting Templates
 
 Check if `templates/year-1-ref.docx` already exists in the working directory.
 
@@ -73,23 +73,47 @@ Check if `templates/year-1-ref.docx` already exists in the working directory.
 
 1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed directory
 2. Derive the **plugin directory** from the matched path (two levels up from `templates/year-1-ref.docx`)
-3. Create `templates/` and `fonts/andika/` directories in the working directory
-4. Copy templates, fonts, and the embedding script using the platform-appropriate commands:
+3. Create the `templates/` directory in the working directory
+4. Copy templates using the platform-appropriate commands:
    - **Linux/macOS:**
      ```bash
      cp {plugin-dir}/templates/year-*-ref.docx templates/
-     cp -r {plugin-dir}/fonts/andika/ fonts/andika/
-     cp {plugin-dir}/embed-fonts.py embed-fonts.py
      ```
    - **Windows:**
      ```powershell
      Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "templates\"
-     Copy-Item -Path "{plugin-dir}\fonts\andika" -Destination "fonts\andika" -Recurse
-     Copy-Item -Path "{plugin-dir}\embed-fonts.py" -Destination "embed-fonts.py"
      ```
-5. Tell the teacher: "Formatting templates and Andika font have been copied. These are used by pandoc to create Word documents with age-appropriate fonts and spacing that work on any computer."
+5. Tell the teacher: "Formatting templates have been copied. These are used by pandoc to create Word documents with age-appropriate fonts and spacing."
 
 If the templates cannot be found, warn the teacher and continue — resources will still generate as Markdown, but .docx formatting will use pandoc defaults.
+
+### Step 5b: Install Andika Font
+
+Check if the Andika font is already installed by looking for `Andika-Regular.ttf` in the user's font directory (see paths below).
+
+**If already installed:** skip this step.
+
+**If not installed:**
+
+1. Use the **plugin directory** found in Step 5 (or find it now using Glob for `**/class-toolkit/fonts/andika/Andika-Regular.ttf` under `~/.claude/`)
+2. Copy the `.ttf` files from `{plugin-dir}/fonts/andika/` to the user's font directory using platform-appropriate commands:
+   - **Linux:**
+     ```bash
+     mkdir -p ~/.local/share/fonts
+     cp {plugin-dir}/fonts/andika/Andika-*.ttf ~/.local/share/fonts/
+     fc-cache -f
+     ```
+   - **macOS:**
+     ```bash
+     cp {plugin-dir}/fonts/andika/Andika-*.ttf ~/Library/Fonts/
+     ```
+   - **Windows:**
+     ```powershell
+     $fontDir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
+     New-Item -ItemType Directory -Force -Path $fontDir | Out-Null
+     Copy-Item -Path "{plugin-dir}\fonts\andika\Andika-*.ttf" -Destination $fontDir
+     ```
+3. Tell the teacher: "The Andika font has been installed on your computer. Word documents will now display with the correct font."
 
 ### Step 6: Create Class Folder
 

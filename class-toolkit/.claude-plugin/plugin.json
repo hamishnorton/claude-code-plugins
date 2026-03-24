@@ -1,7 +1,7 @@
 {
   "name": "class-toolkit",
   "description": "Generate personalised educational resources for each student in the class",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "hooks": {
     "SessionStart": [
       {
