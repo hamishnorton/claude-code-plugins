@@ -2,6 +2,13 @@
 
 Generate personalised educational resources for each student in your class from a single prompt.
 
+## Getting Started
+
+Follow the setup guide for your role:
+
+- **Teachers** — [Teacher Setup Guide](Teacher-Setup-Guide.md) — subscribe to Claude Pro, install the plugin, and create your first class
+- **School IT / Admins** — [Admin Setup Guide](Admin-Setup-Guide.md) — install the required software on teacher machines (Windows)
+
 ## Prerequisites
 
 - [Pandoc](https://pandoc.org/installing.html) — required by `generate-resource` to create Word documents
