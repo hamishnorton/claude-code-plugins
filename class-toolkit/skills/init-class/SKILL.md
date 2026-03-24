@@ -44,7 +44,7 @@ Example: "Year 5 Blue" → `year-5-blue`
 Use Glob to check if `{folder-name}/` already exists.
 
 - If it exists, tell the teacher: "A class called '{class name}' already exists. Would you like to add more students to it?"
-- Use AskUserQuestion to confirm. If no, stop. If yes, continue to Step 4, then skip to Step 6.
+- Use AskUserQuestion to confirm. If no, stop. If yes, continue to Step 4, then skip to Step 8.
 
 ### Step 4: Create CLAUDE.md
 
@@ -87,7 +87,7 @@ Check if `templates/year-1-ref.docx` already exists in the working directory.
 
 If the templates cannot be found, warn the teacher and continue — resources will still generate as Markdown, but .docx formatting will use pandoc defaults.
 
-### Step 5b: Install Andika Font
+### Step 6: Install Andika Font
 
 Check if the Andika font is already installed by looking for `Andika-Regular.ttf` in the user's font directory (see paths below).
 
@@ -115,12 +115,12 @@ Check if the Andika font is already installed by looking for `Andika-Regular.ttf
      ```
 3. Tell the teacher: "The Andika font has been installed on your computer. Word documents will now display with the correct font."
 
-### Step 6: Create Class Folder
+### Step 7: Create Class Folder
 
 1. Read the template file at `guides/student-profile-template.md`
 2. Create `{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
 
-### Step 7: Ask for Student Names
+### Step 8: Ask for Student Names
 
 Use AskUserQuestion to ask:
 
@@ -131,7 +131,7 @@ Barry Crump
 Sarah Uma
 Liam 0'Brien"
 
-### Step 8: Create Student Profiles
+### Step 9: Create Student Profiles
 
 For each name the teacher provided:
 
@@ -142,7 +142,7 @@ For each name the teacher provided:
 - Read `guides/student-profile-template.md`
 - Create `{folder-name}/{student-folder-name}/student-profile.md` with the template content
 
-### Step 9: Report and Next Steps
+### Step 10: Report and Next Steps
 
 Summarise what was created:
 
