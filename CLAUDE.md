@@ -27,3 +27,12 @@ Types: `feat`, `fix`, `refactor`, `chore`, `docs`
 ## Versioning
 
 When making changes to a plugin, bump the version in its `.claude-plugin/plugin.json`. Use semver: patch for fixes, minor for new features, major for breaking changes.
+
+## Update Plugin
+
+Use the `/update-plugin` skill to update the class-toolkit plugin to the latest version. The underlying commands are:
+
+```bash
+claude plugin marketplace update hamishnorton
+claude plugin update class-toolkit@hamishnorton --scope user
+```
