@@ -39,20 +39,29 @@ Convert the class name to a folder-safe format:
 
 Example: "Year 5 Blue" → `year-5-blue`
 
-### Step 3: Check for Existing Class
+### Step 3: Determine Base Directory
 
-Use Glob to check if `{folder-name}/` already exists.
+Check if the current working directory's basename is `ClassResources`.
+
+- **If yes:** use the current directory as the base — all paths below are relative to `.`
+- **If no:** set the base directory to `ClassResources/`. Create this folder if it does not exist.
+
+All subsequent steps use `{base}` to mean either `.` or `ClassResources/` depending on the result above.
+
+### Step 4: Check for Existing Class
+
+Use Glob to check if `{base}/{folder-name}/` already exists.
 
 - If it exists, tell the teacher: "A class called '{class name}' already exists. Would you like to add more students to it?"
-- Use AskUserQuestion to confirm. If no, stop. If yes, continue to Step 4, then skip to Step 8.
+- Use AskUserQuestion to confirm. If no, stop. If yes, continue to Step 5, then skip to Step 9.
 
-### Step 4: Create CLAUDE.md
+### Step 5: Create CLAUDE.md
 
-Check if a `CLAUDE.md` file exists in the working directory root.
+Check if a `CLAUDE.md` file exists at `{base}/CLAUDE.md`.
 
 **If it already exists:** skip this step — do not overwrite it.
 
-**If it does not exist:** create `CLAUDE.md` with the following content:
+**If it does not exist:** create `{base}/CLAUDE.md` with the following content:
 
 ```
 You are a expert teacher.
@@ -63,9 +72,9 @@ Use the class-toolkit skills to manage classes and generate resources:
 - `/generate-resource` — create personalised resources for each student
 ```
 
-### Step 5: Copy Formatting Templates
+### Step 6: Copy Formatting Templates
 
-Check if `templates/year-1-ref.docx` already exists in the working directory.
+Check if `{base}/templates/year-1-ref.docx` already exists.
 
 **If it exists:** skip this step — templates are already in place.
 
@@ -73,21 +82,21 @@ Check if `templates/year-1-ref.docx` already exists in the working directory.
 
 1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed directory
 2. Derive the **plugin directory** from the matched path (two levels up from `templates/year-1-ref.docx`)
-3. Create the `templates/` directory in the working directory
+3. Create the `{base}/templates/` directory
 4. Copy templates using the platform-appropriate commands:
    - **Linux/macOS:**
      ```bash
-     cp {plugin-dir}/templates/year-*-ref.docx templates/
+     cp {plugin-dir}/templates/year-*-ref.docx {base}/templates/
      ```
    - **Windows:**
      ```powershell
-     Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "templates\"
+     Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "{base}\templates\"
      ```
 5. Tell the teacher: "Formatting templates have been copied. These are used by pandoc to create Word documents with age-appropriate fonts and spacing."
 
 If the templates cannot be found, warn the teacher and continue — resources will still generate as Markdown, but .docx formatting will use pandoc defaults.
 
-### Step 6: Install Andika Font
+### Step 7: Install Andika Font
 
 Check if the Andika font is already installed by looking for `Andika-Regular.ttf` in the user's font directory (see paths below).
 
@@ -95,7 +104,7 @@ Check if the Andika font is already installed by looking for `Andika-Regular.ttf
 
 **If not installed:**
 
-1. Use the **plugin directory** found in Step 5 (or find it now using Glob for `**/class-toolkit/fonts/andika/Andika-Regular.ttf` under `~/.claude/`)
+1. Use the **plugin directory** found in Step 6 (or find it now using Glob for `**/class-toolkit/fonts/andika/Andika-Regular.ttf` under `~/.claude/`)
 2. Copy the `.ttf` files from `{plugin-dir}/fonts/andika/` to the user's font directory using platform-appropriate commands:
    - **Linux:**
      ```bash
@@ -115,12 +124,12 @@ Check if the Andika font is already installed by looking for `Andika-Regular.ttf
      ```
 3. Tell the teacher: "The Andika font has been installed on your computer. Word documents will now display with the correct font."
 
-### Step 7: Create Class Folder
+### Step 8: Create Class Folder
 
 1. Read the template file at `guides/student-profile-template.md`
-2. Create `{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
+2. Create `{base}/{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
 
-### Step 8: Ask for Student Names
+### Step 9: Ask for Student Names
 
 Use AskUserQuestion to ask:
 
@@ -131,7 +140,7 @@ Barry Crump
 Sarah Uma
 Liam 0'Brien"
 
-### Step 9: Create Student Profiles
+### Step 10: Create Student Profiles
 
 For each name the teacher provided:
 
@@ -140,9 +149,9 @@ For each name the teacher provided:
   - Example: "Barry Crump" → `barry-crump`, "Liam O'Brien" → `liam-obrien`
 - If the student folder already exists within this class, skip it and note it in the report
 - Read `guides/student-profile-template.md`
-- Create `{folder-name}/{student-folder-name}/student-profile.md` with the template content
+- Create `{base}/{folder-name}/{student-folder-name}/student-profile.md` with the template content
 
-### Step 10: Report and Next Steps
+### Step 11: Report and Next Steps
 
 Summarise what was created:
 
@@ -156,7 +165,7 @@ Then tell the teacher:
 
 "Your class is set up! Each student has a profile at:
 
-{folder-name}/{student-name}/student-profile.md
+{base}/{folder-name}/{student-name}/student-profile.md
 
 To personalise resources for your students, open each profile and fill in their:
 

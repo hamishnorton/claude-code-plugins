@@ -81,31 +81,40 @@ Each student will receive two files: `{base-filename}.md` and `{base-filename}.d
 
 Tell the user the filename that will be used and list the students who will receive the resource.
 
-### Step 4: Ensure Templates Are Available
+### Step 4: Determine Templates Directory
 
-Before generating resources, check if `templates/year-1-ref.docx` exists in the working directory.
+Derive the **templates directory** from where the student profiles were found in Step 2. The templates directory is a sibling of the class folder:
 
-**If it exists:** continue to Step 5.
+- If student profiles are at `ClassResources/{class}/{student}/student-profile.md`, templates are at `ClassResources/templates/`
+- If student profiles are at `{class}/{student}/student-profile.md` (working directory is already ClassResources), templates are at `templates/`
+
+In short: take the parent directory of the class folder and append `templates/`. Call this `{templates-dir}`.
+
+### Step 5: Ensure Templates Are Available
+
+Check if `{templates-dir}/year-1-ref.docx` exists.
+
+**If it exists:** continue to Step 6.
 
 **If it does not exist:**
 
 1. Use Glob to find `**/class-toolkit/templates/year-1-ref.docx` under `~/.claude/` to locate the plugin's installed directory
 2. Derive the **plugin directory** from the matched path (two levels up from `templates/year-1-ref.docx`)
-3. Create the `templates/` directory in the working directory
+3. Create the `{templates-dir}` directory
 4. Use Bash to copy templates using the platform-appropriate commands:
    - **Linux/macOS:**
      ```
-     cp {plugin-dir}/templates/year-*-ref.docx templates/
+     cp {plugin-dir}/templates/year-*-ref.docx {templates-dir}/
      ```
    - **Windows:**
      ```
-     Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "templates\"
+     Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "{templates-dir}\"
      ```
 5. Tell the teacher that formatting templates have been copied
 
 If the templates cannot be found, warn the teacher that .docx files will use pandoc's default formatting instead of year-appropriate styles, then continue.
 
-### Step 5: Generate Resources in Parallel
+### Step 6: Generate Resources in Parallel
 
 Launch one Agent per student **in a single message** (parallel execution). Each agent should be `general-purpose` type.
 
@@ -137,12 +146,12 @@ Write the completed resource to: {student folder path}/{base-filename}.md
 
 Run this command to convert the Markdown to a formatted .docx using the year-level reference template:
 
-pandoc "{student folder path}/{base-filename}.md" --reference-doc="templates/year-{year-level}-ref.docx" -o "{student folder path}/{base-filename}.docx"
+pandoc "{student folder path}/{base-filename}.md" --reference-doc="{templates-dir}/year-{year-level}-ref.docx" -o "{student folder path}/{base-filename}.docx"
 
 The reference template applies age-appropriate font, size, and spacing automatically. Do not skip this step.
 ```
 
-### Step 6: Report
+### Step 7: Report
 
 After all agents complete, summarise:
 
