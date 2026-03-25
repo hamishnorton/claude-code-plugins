@@ -42,7 +42,66 @@ Then type this command and press Enter:
 
 You only need to do this once.
 
-## Step 5: Open Your Class Folder
+## Step 5: Configure VS Code Settings
+
+1. In VS Code, go to **File > Preferences > Settings** (or press `Ctrl+,`)
+2. Search for **Claude Code**
+3. Set the following:
+   - **Initial Permission Mode** → `bypassPermissions`
+   - **Allow Dangerously Skip Permissions** → tick the checkbox
+4. Close the Settings tab
+
+Alternatively, open your VS Code `settings.json` (press `Ctrl+Shift+P`, type **Preferences: Open User Settings (JSON)**) and add:
+
+```json
+{
+  "claudeCode.initialPermissionMode": "bypassPermissions",
+  "claudeCode.allowDangerouslySkipPermissions": true
+}
+```
+
+## Step 6: Set Up Permissions
+
+The Class Toolkit needs permission to read and write files, run commands, and access your home folder. Without this, Claude will ask you to approve every single action.
+
+### Option A: Use the /permissions command
+
+In the Claude Code chat panel, type:
+
+```
+/permissions
+```
+
+Then allow the following tools: **Read**, **Edit**, **Write**, **Glob**, **Grep**, **Bash**, **Skill**, **WebFetch**, **WebSearch**
+
+Set the default mode to **bypassPermissions** and add `~/` as an additional directory.
+
+### Option B: Edit settings.json manually
+
+If you prefer, open the file `~/.claude/settings.json` in VS Code and add the following block:
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash",
+      "Skill",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "defaultMode": "bypassPermissions"
+  }
+}
+```
+
+If the file already has content, merge the `"permissions"` key into the existing JSON rather than replacing the whole file.
+
+## Step 7: Open Your Class Folder
 
 1. In VS Code, go to **File > Open Folder**
 2. Navigate to `Documents > ClassResources`
@@ -50,7 +109,7 @@ You only need to do this once.
 
 You should see your student folders in the left sidebar.
 
-## Step 6: Generate Your First Resource
+## Step 8: Generate Your First Resource
 
 In the Claude Code chat panel, type:
 
@@ -64,10 +123,10 @@ Claude will create a personalised Word document for every student. The files app
 
 ## Quick Reference
 
-| Command               | What it does                                          |
-| --------------------- | ----------------------------------------------------- |
-| `/generate-resource`  | Generate a personalised resource for every student    |
-| `/init-class`         | Add new students or update the class list             |
+| Command              | What it does                                       |
+| -------------------- | -------------------------------------------------- |
+| `/generate-resource` | Generate a personalised resource for every student |
+| `/init-class`        | Add new students or update the class list          |
 
 - Type `/generate-resource` with no prompt to see saved guides you can reuse
 - Word documents are saved in each student's folder inside `ClassResources`
@@ -82,10 +141,10 @@ Your admin may have placed a **Class Toolkit** launcher on your Desktop. Double-
 
 ## Troubleshooting
 
-| Problem                                  | Solution                                                         |
-| ---------------------------------------- | ---------------------------------------------------------------- |
-| Claude asks to sign in again             | Normal — sign in with the same account                           |
-| "pandoc is not installed" warning         | Ask your admin to reinstall Pandoc and restart the computer      |
-| Font doesn't look right in Word          | Run `/init-class` again — it installs the correct font           |
+| Problem                                  | Solution                                                          |
+| ---------------------------------------- | ----------------------------------------------------------------- |
+| Claude asks to sign in again             | Normal — sign in with the same account                            |
+| "pandoc is not installed" warning        | Ask your admin to reinstall Pandoc and restart the computer       |
+| Font doesn't look right in Word          | Run `/init-class` again — it installs the correct font            |
 | `/generate-resource` doesn't do anything | Make sure student profiles have `active: true` in the frontmatter |
 | "git is not recognized"                  | Ask your admin to reinstall Git for Windows and restart           |
