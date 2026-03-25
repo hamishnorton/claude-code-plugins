@@ -125,6 +125,7 @@ You are creating a personalised educational resource for a student.
 - If their interests are listed, weave references to those interests naturally into the content
 - Match vocabulary and complexity to their reading level
 - If learning needs are specified, adapt the resource accordingly
+- Use New Zealand/British English spelling throughout (e.g., colour, organised, behaviour, programme, centre)
 - Write the resource in Markdown format
 - Do NOT include YAML frontmatter
 
