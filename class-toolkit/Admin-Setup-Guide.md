@@ -14,7 +14,7 @@ Run the install script to do everything at once:
    ```
 3. Restart the computer when it finishes
 
-The script installs Git, Pandoc, Claude Code, and VS Code. It skips anything already installed. At the end it will print a command to copy the Class Toolkit launcher to the teacher's Desktop — run that command before restarting. If it succeeds, skip to the [Verification Checklist](#verification-checklist) below.
+The script installs Pandoc, VS Code, Git, and Claude Code. It skips anything already installed. At the end it will print a command to copy the Class Toolkit launcher to the teacher's Desktop — run that command before restarting. If it succeeds, skip to the [Verification Checklist](#verification-checklist) below.
 
 ---
 
@@ -22,15 +22,7 @@ The script installs Git, Pandoc, Claude Code, and VS Code. It skips anything alr
 
 There are four programs to install, plus the launcher. Do them in order.
 
-### 1. Git for Windows
-
-Claude Code needs Git to run commands.
-
-1. Go to https://git-scm.com/downloads/win
-2. Download the installer
-3. Run the installer — click Next through the defaults
-
-### 2. Pandoc
+### 1. Pandoc
 
 Pandoc converts generated content into Word documents.
 
@@ -38,7 +30,22 @@ Pandoc converts generated content into Word documents.
 2. Click the **Windows installer** (the `.msi` file)
 3. Run the installer — click Next through the defaults
 
-### 3. Claude Code (CLI)
+### 2. VS Code
+
+VS Code gives the teacher a visual file explorer alongside the chat.
+
+1. Download from https://code.visualstudio.com
+2. Run the installer — click Next through the defaults
+
+### 3. Git for Windows
+
+Claude Code needs Git to run commands.
+
+1. Go to https://git-scm.com/downloads/win
+2. Download the installer
+3. Run the installer — click Next through the defaults
+
+### 4. Claude Code (CLI)
 
 This is the AI assistant that powers the class toolkit.
 
@@ -48,13 +55,6 @@ This is the AI assistant that powers the class toolkit.
    irm https://claude.ai/install.ps1 | iex
    ```
 3. Wait for it to finish installing
-
-### 4. VS Code
-
-VS Code gives the teacher a visual file explorer alongside the chat.
-
-1. Download from https://code.visualstudio.com
-2. Run the installer — click Next through the defaults
 
 ### 5. Class Toolkit Launcher
 
@@ -92,10 +92,10 @@ If any command says "not recognized", reinstall that program and restart again.
 
 | Software        | What it does                | Download / Source                            |
 | --------------- | --------------------------- | -------------------------------------------- |
-| Git for Windows | Required by Claude Code     | https://git-scm.com/downloads/win            |
 | Pandoc          | Creates Word documents      | https://pandoc.org/installing.html           |
-| Claude Code     | AI assistant (CLI)          | `irm https://claude.ai/install.ps1 \| iex`  |
 | VS Code         | Code editor with UI         | https://code.visualstudio.com                |
+| Git for Windows | Required by Claude Code     | https://git-scm.com/downloads/win            |
+| Claude Code     | AI assistant (CLI)          | `irm https://claude.ai/install.ps1 \| iex`  |
 | class-toolkit.bat | Desktop launcher for teacher | Included alongside this guide              |
 
 ---
