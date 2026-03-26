@@ -28,7 +28,15 @@ Create a new class folder and generate a student profile for each student.
 
 1. Use `$ARGUMENTS` as the class name
 
-### Step 2: Format the Folder Name
+### Step 2: Determine Year Level
+
+Use AskUserQuestion to ask: "What year level are most students in this class? (1–8)"
+
+Validate the response is a whole number between 1 and 8. If not, ask again.
+
+Store this as the **default year level**. It will be written into every student's profile. Teachers can edit individual profiles later for mixed-year-level classes.
+
+### Step 3: Format the Folder Name
 
 Convert the class name to a folder-safe format:
 
@@ -39,7 +47,7 @@ Convert the class name to a folder-safe format:
 
 Example: "Year 5 Blue" → `year-5-blue`
 
-### Step 3: Determine Base Directory
+### Step 4: Determine Base Directory
 
 Check if the current working directory's basename is `ClassResources`.
 
@@ -48,14 +56,14 @@ Check if the current working directory's basename is `ClassResources`.
 
 All subsequent steps use `{base}` to mean either `.` or `ClassResources/` depending on the result above.
 
-### Step 4: Check for Existing Class
+### Step 5: Check for Existing Class
 
 Use Glob to check if `{base}/{folder-name}/` already exists.
 
 - If it exists, tell the teacher: "A class called '{class name}' already exists. Would you like to add more students to it?"
-- Use AskUserQuestion to confirm. If no, stop. If yes, continue to Step 5, then skip to Step 9.
+- Use AskUserQuestion to confirm. If no, stop. If yes, continue to Step 6, then skip to Step 10.
 
-### Step 5: Create CLAUDE.md
+### Step 6: Create CLAUDE.md
 
 Check if a `CLAUDE.md` file exists at `{base}/CLAUDE.md`.
 
@@ -72,7 +80,7 @@ Use the class-toolkit skills to manage classes and generate resources:
 - `/generate-resource` — create personalised resources for each student
 ```
 
-### Step 6: Copy Formatting Templates
+### Step 7: Copy Formatting Templates
 
 Check if `{base}/templates/year-1-ref.docx` already exists.
 
@@ -96,7 +104,7 @@ Check if `{base}/templates/year-1-ref.docx` already exists.
 
 If the templates cannot be found, warn the teacher and continue — resources will still generate as Markdown, but .docx formatting will use pandoc defaults.
 
-### Step 7: Install Andika Font
+### Step 8: Install Andika Font
 
 Check if the Andika font is already installed by looking for `Andika-Regular.ttf` in the user's font directory (see paths below).
 
@@ -104,7 +112,7 @@ Check if the Andika font is already installed by looking for `Andika-Regular.ttf
 
 **If not installed:**
 
-1. Use the **plugin directory** found in Step 6 (or find it now using Glob for `**/class-toolkit/fonts/andika/Andika-Regular.ttf` under `~/.claude/`)
+1. Use the **plugin directory** found in Step 7 (or find it now using Glob for `**/class-toolkit/fonts/andika/Andika-Regular.ttf` under `~/.claude/`)
 2. Copy the `.ttf` files from `{plugin-dir}/fonts/andika/` to the user's font directory using platform-appropriate commands:
    - **Linux:**
      ```bash
@@ -124,12 +132,12 @@ Check if the Andika font is already installed by looking for `Andika-Regular.ttf
      ```
 3. Tell the teacher: "The Andika font has been installed on your computer. Word documents will now display with the correct font."
 
-### Step 8: Create Class Folder
+### Step 9: Create Class Folder
 
 1. Read the template file at `guides/student-profile-template.md`
 2. Create `{base}/{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
 
-### Step 9: Ask for Student Names
+### Step 10: Ask for Student Names
 
 Use AskUserQuestion to ask:
 
@@ -140,7 +148,7 @@ Barry Crump
 Sarah Uma
 Liam 0'Brien"
 
-### Step 10: Create Student Profiles
+### Step 11: Create Student Profiles
 
 For each name the teacher provided:
 
@@ -149,13 +157,15 @@ For each name the teacher provided:
   - Example: "Barry Crump" → `barry-crump`, "Liam O'Brien" → `liam-obrien`
 - If the student folder already exists within this class, skip it and note it in the report
 - Read `guides/student-profile-template.md`
-- Create `{base}/{folder-name}/{student-folder-name}/student-profile.md` with the template content
+- In the template content, replace `year-level:` with `year-level: {default-year-level}` (where `{default-year-level}` is the number from Step 2)
+- Create `{base}/{folder-name}/{student-folder-name}/student-profile.md` with the updated template content
 
-### Step 11: Report and Next Steps
+### Step 12: Report and Next Steps
 
 Summarise what was created:
 
 - Class name and folder path
+- Year level set to {default-year-level} for all students
 - Number of students added
 - List each student name
 - Note any students that were skipped (already existed)
@@ -172,5 +182,7 @@ To personalise resources for your students, open each profile and fill in their:
 - **Reading Level** — e.g., below grade level, at grade level, above grade level
 - **Interests** — e.g., dinosaurs, soccer, space, art
 - **Learning Needs** — e.g., needs visual aids, extended time, gifted enrichment
+
+If your class has mixed year levels, you can edit individual student profiles to change the `year-level` value in the frontmatter.
 
 Once the profiles are filled in, use /generate-resource to create personalised resources for the whole class."

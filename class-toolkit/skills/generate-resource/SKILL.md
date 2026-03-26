@@ -50,7 +50,9 @@ Use Glob to find all `**/student-profile.md` files in the working directory. Thi
 
 Group the results by **class folder** — the top-level folder that contains the student (not `guides/`). Derive the class display name by replacing hyphens with spaces and title-casing (e.g., `year-5-blue` → "Year 5 Blue").
 
-**Extract the year level** from the class folder name by looking for a pattern like `year-5` or `y5` (a number 1–8). This determines which .docx reference template to use for formatting. If no year level is found in the folder name, default to **2**.
+**Extract the year level** from each student's profile frontmatter (`year-level` field). This determines which .docx reference template to use for formatting. The year level may differ between students in the same class (mixed year levels).
+
+**Fallback:** If a student's profile does not have a `year-level` value in frontmatter (or it is blank), fall back to extracting from the class folder name by looking for a pattern like `year-5` or `y5` (a number 1–8). If neither source provides a year level, default to **2**.
 
 **If one class is found:** use it automatically and tell the teacher which class is being used.
 
@@ -65,7 +67,7 @@ Extract from each:
 - **Student name**: The student's folder name, replacing hyphens with spaces and title-casing (e.g., `barry-crump` → "Barry Crump")
 - **Student folder path**: Full path to the student's folder
 - **Profile content**: The full content of `student-profile.md`
-- **Year level**: The year level extracted from the class folder (1–8, default 2)
+- **Year level**: The year level from the student's profile frontmatter (1–8), falling back to the class folder name pattern, then defaulting to 2
 
 If no active students are found, inform the user and stop.
 
@@ -144,7 +146,7 @@ Write the completed resource to: {student folder path}/{base-filename}.md
 
 ## Step 2: Convert to Word document
 
-Run this command to convert the Markdown to a formatted .docx using the year-level reference template:
+Run this command to convert the Markdown to a formatted .docx using this student's year-level reference template:
 
 pandoc "{student folder path}/{base-filename}.md" --reference-doc="{templates-dir}/year-{year-level}-ref.docx" -o "{student folder path}/{base-filename}.docx"
 
@@ -157,6 +159,6 @@ After all agents complete, summarise:
 
 - How many students received the resource
 - The filenames used (both `.md` and `.docx`)
-- The year level and reference template used for formatting
+- The year level and reference template used for each student (note if students used different year levels)
 - List each student name and confirm both files were created
 - Note any issues or agents that failed (including pandoc conversion failures)

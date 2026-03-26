@@ -61,10 +61,11 @@ Create your own by passing any prompt to `/generate-resource` — it will be sav
 
 ## Student profiles
 
-Each student has a `student-profile.md` with three fields to fill in:
+Each student has a `student-profile.md` with a `year-level` in the frontmatter and three fields to fill in:
 
+- **Year Level** (frontmatter) — the student's year level (1–8), used to select age-appropriate formatting for Word documents
 - **Reading Level** — e.g. below grade level, at grade level, above grade level
 - **Interests** — e.g. dinosaurs, soccer, space, art
 - **Learning Needs** — e.g. needs visual aids, extended time, gifted enrichment
 
-Students must have `active: true` in their profile frontmatter to receive generated resources.
+Students must have `active: true` in their profile frontmatter to receive generated resources. The `year-level` field (1–8) controls which formatting template is used for Word documents.

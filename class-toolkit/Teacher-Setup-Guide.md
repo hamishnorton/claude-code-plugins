@@ -130,6 +130,7 @@ Claude will create a personalised Word document for every student. The files app
 
 - Type `/generate-resource` with no prompt to see saved guides you can reuse
 - Word documents are saved in each student's folder inside `ClassResources`
+- To change a student's year level, edit the `year-level` value in their `student-profile.md` frontmatter
 
 ---
 
