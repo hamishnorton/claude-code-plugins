@@ -61,7 +61,7 @@ Create your own by passing any prompt to `/generate-resource` — it will be sav
 
 ## Student profiles
 
-Each student has a `student-profile.md` with a `year-level` in the frontmatter and three fields to fill in:
+Each student has a `student-profile.md` with a `year-level` in the frontmatter and three fields to fill in. `.md` files are [Markdown](https://www.markdownguide.org/getting-started/) — plain text files you can open and edit in any text editor, including VS Code.
 
 - **Year Level** (frontmatter) — the student's year level (1–8), used to select age-appropriate formatting for Word documents
 - **Reading Level** — e.g. below grade level, at grade level, above grade level
