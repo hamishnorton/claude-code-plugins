@@ -60,7 +60,20 @@ Alternatively, open your VS Code `settings.json` (press `Ctrl+Shift+P`, type **P
 }
 ```
 
-## Step 6: Set Up Permissions
+## Step 6: Install a Markdown Formatter (Optional)
+
+A formatter keeps your Markdown files (like student profiles) neat and consistent, fixing spacing and alignment automatically every time you save.
+
+1. In VS Code, open **Extensions** (`Ctrl+Shift+X`)
+2. Search for **Prettier - Code formatter** (by Prettier)
+3. Click **Install**
+4. Go to **File > Preferences > Settings** (or press `Ctrl+,`)
+5. Search for **Format On Save**
+6. Tick the **Editor: Format On Save** checkbox
+
+Now whenever you save a `.md` file, Prettier will tidy it up for you.
+
+## Step 7: Set Up Permissions
 
 The Class Toolkit needs permission to read and write files, run commands, and access your home folder. Without this, Claude will ask you to approve every single action.
 
@@ -101,7 +114,7 @@ If you prefer, open the file `~/.claude/settings.json` in VS Code and add the fo
 
 If the file already has content, merge the `"permissions"` key into the existing JSON rather than replacing the whole file.
 
-## Step 7: Open Your Class Folder
+## Step 8: Open Your Class Folder
 
 1. In VS Code, go to **File > Open Folder**
 2. Navigate to `Documents > ClassResources`
@@ -109,7 +122,7 @@ If the file already has content, merge the `"permissions"` key into the existing
 
 You should see your student folders in the left sidebar.
 
-## Step 8: Generate Your First Resource
+## Step 9: Generate Your First Resource
 
 In the Claude Code chat panel, type:
 
