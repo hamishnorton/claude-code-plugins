@@ -26,7 +26,7 @@ Types: `feat`, `fix`, `refactor`, `chore`, `docs`
 
 ## Versioning
 
-When making changes to a plugin, bump the version in its `.claude-plugin/plugin.json`. Use semver: patch for fixes, minor for new features, major for breaking changes.
+When making changes to a plugin, bump the version in its `.claude-plugin/plugin.json`. Use semver: patch for fixes, minor for new features, major for breaking changes. When bumping the version, also update `CHANGELOG.md` with a summary of changes since the last release.
 
 ## Update Plugin
 
