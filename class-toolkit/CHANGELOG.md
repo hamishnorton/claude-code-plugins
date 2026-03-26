@@ -2,6 +2,13 @@
 
 All notable changes to the class-toolkit plugin are documented in this file.
 
+## [0.8.1] — 2026-03-26
+
+### Added
+
+- Markdown explanation link in README for teachers unfamiliar with .md files
+- Optional Prettier formatter setup step in Teacher Setup Guide
+
 ## [0.8.0] — 2026-03-26
 
 ### Added
