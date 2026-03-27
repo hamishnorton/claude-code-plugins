@@ -139,14 +139,17 @@ Check if the Andika font is already installed by looking for `Andika-Regular.ttf
 
 ### Step 10: Ask for Student Names
 
-Use AskUserQuestion to ask:
+Use AskUserQuestion with:
 
-"Please list the student names, one per line. For example:
+- **Question:** "How would you like to add students?"
+- **Header:** "Students"
+- **Options:**
+  1. **Label:** "Paste a student list" — **Description:** "Type or paste student names, one per line, into the text box (use Other)"
+  2. **Label:** "Use example names" — **Description:** "Use Pat Dagg, Barry Crump, Sarah Uma, and Liam O'Brien for testing"
 
-Pat Dagg
-Barry Crump
-Sarah Uma
-Liam 0'Brien"
+If the teacher selects "Paste a student list" or "Other", use their typed response as the student list.
+
+If the teacher selects "Use example names", use: Pat Dagg, Barry Crump, Sarah Uma, Liam O'Brien.
 
 ### Step 11: Create Student Profiles
 
