@@ -188,6 +188,29 @@ def modify_styles_xml(styles_xml_bytes, year_level):
     return ET.tostring(root, xml_declaration=True, encoding="UTF-8")
 
 
+def set_page_size_a4(document_xml_bytes):
+    """Set page size to A4 (210mm x 297mm) in document.xml section properties."""
+    tree = ET.ElementTree(ET.fromstring(document_xml_bytes))
+    root = tree.getroot()
+
+    body = root.find(w_tag("body"))
+    if body is None:
+        return document_xml_bytes
+
+    sect_pr = body.find(w_tag("sectPr"))
+    if sect_pr is None:
+        sect_pr = ET.SubElement(body, w_tag("sectPr"))
+
+    # A4: 210mm x 297mm = 11906 x 16838 twips
+    pg_sz = sect_pr.find(w_tag("pgSz"))
+    if pg_sz is None:
+        pg_sz = ET.SubElement(sect_pr, w_tag("pgSz"))
+    pg_sz.set(w_tag("w"), "11906")
+    pg_sz.set(w_tag("h"), "16838")
+
+    return ET.tostring(root, xml_declaration=True, encoding="UTF-8")
+
+
 def generate_template(year_level, base_docx_path):
     """Generate a reference .docx template for a specific year level."""
     output_path = os.path.join(TEMPLATES_DIR, f"year-{year_level}-ref.docx")
@@ -207,6 +230,16 @@ def generate_template(year_level, base_docx_path):
 
         with open(styles_path, "wb") as f:
             f.write(modified_xml)
+
+        # Set page size to A4 in document.xml
+        doc_path = os.path.join(extract_dir, "word", "document.xml")
+        with open(doc_path, "rb") as f:
+            doc_xml = f.read()
+
+        modified_doc = set_page_size_a4(doc_xml)
+
+        with open(doc_path, "wb") as f:
+            f.write(modified_doc)
 
         # Repack into .docx
         with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zout:
