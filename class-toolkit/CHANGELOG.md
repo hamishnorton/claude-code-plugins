@@ -2,6 +2,13 @@
 
 All notable changes to the class-toolkit plugin are documented in this file.
 
+## [0.8.2] — 2026-03-28
+
+### Changed
+
+- Set A4 page size in reference docx templates
+- Refined Step 10 student input to use structured options
+
 ## [0.8.1] — 2026-03-26
 
 ### Added
