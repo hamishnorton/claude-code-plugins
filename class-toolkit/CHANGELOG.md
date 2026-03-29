@@ -2,6 +2,14 @@
 
 All notable changes to the class-toolkit plugin are documented in this file.
 
+## [0.10.0] — 2026-03-29
+
+### Added
+
+- File structure migration step in update-plugin skill
+- Detects and fixes outdated layouts from previous plugin versions
+- Migrations: unwrap class-agent nesting, wrap in ClassResources, provision templates, clean up old template copies, add missing year-level to profiles, install Andika font, nest flat progression files
+
 ## [0.9.0] — 2026-03-29
 
 ### Added
