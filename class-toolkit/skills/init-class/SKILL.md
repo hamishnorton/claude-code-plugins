@@ -95,10 +95,12 @@ Check if `{base}/templates/year-1-ref.docx` already exists.
    - **Linux/macOS:**
      ```bash
      cp {plugin-dir}/templates/year-*-ref.docx {base}/templates/
+     cp {plugin-dir}/templates/student-profile-template.md {base}/templates/
      ```
    - **Windows:**
      ```powershell
      Copy-Item -Path "{plugin-dir}\templates\year-*-ref.docx" -Destination "{base}\templates\"
+     Copy-Item -Path "{plugin-dir}\templates\student-profile-template.md" -Destination "{base}\templates\"
      ```
 5. Tell the teacher: "Formatting templates have been copied. These are used by pandoc to create Word documents with age-appropriate fonts and spacing."
 
@@ -134,8 +136,7 @@ Check if the Andika font is already installed by looking for `Andika-Regular.ttf
 
 ### Step 9: Create Class Folder
 
-1. Read the template file at `guides/student-profile-template.md`
-2. Create `{base}/{folder-name}/student-profile-template.md` as a copy of the template — this gives the teacher a local reference for the profile format
+1. Create the `{base}/{folder-name}/` directory
 
 ### Step 10: Ask for Student Names
 
@@ -159,7 +160,7 @@ For each name the teacher provided:
 - Convert the name to a folder-safe format (lowercase, spaces to hyphens, strip apostrophes and special characters)
   - Example: "Barry Crump" → `barry-crump`, "Liam O'Brien" → `liam-obrien`
 - If the student folder already exists within this class, skip it and note it in the report
-- Read `guides/student-profile-template.md`
+- Read `templates/student-profile-template.md`
 - In the template content, replace `year-level:` with `year-level: {default-year-level}` (where `{default-year-level}` is the number from Step 2)
 - Create `{base}/{folder-name}/{student-folder-name}/student-profile.md` with the updated template content
 

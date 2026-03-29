@@ -24,7 +24,7 @@ The guides directory is `guides/`.
 
 **If `$ARGUMENTS` is empty:**
 
-1. Glob `guides/*.md` to list available guide files (exclude `student-profile-template.md`)
+1. Glob `guides/*.md` to list available guide files
 2. If no guides exist, tell the user there are no saved guides and ask them to provide a resource prompt instead, then stop
 3. Present the guides as a numbered list (display the filename without `.md`, replacing hyphens with spaces)
 4. Use AskUserQuestion to ask the user which guide to use

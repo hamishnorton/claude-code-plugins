@@ -72,21 +72,20 @@ I'll now create progression files for each level."
 
 ### Step 5: Create Progressions Folder
 
-1. Check if `{base}/progressions/` exists
-2. If it does not exist, create it
+1. Derive a **framework slug** from the framework name identified in Step 4 (lowercase, hyphens, e.g., "BSLA" → `bsla`, "NZ Maths Stages" → `nz-maths-stages`)
+2. Check if `{base}/progressions/{framework-slug}/` exists
+3. If it does not exist, create it (including the parent `progressions/` directory if needed)
 
 ### Step 6: Copy or Link the Source Resource
 
 **If the resource reference is a file path:**
 
-1. Derive a **framework slug** from the framework name identified in Step 4 (lowercase, hyphens, e.g., "BSLA" → `bsla`, "NZ Maths Stages" → `nz-maths-stages`)
-2. Copy the file to `{base}/progressions/` using the platform-appropriate copy command
-3. Tell the teacher the source file has been copied
+1. Copy the file to `{base}/progressions/{framework-slug}/` using the platform-appropriate copy command
+2. Tell the teacher the source file has been copied
 
 **If the resource reference is a URL:**
 
-1. Derive a **framework slug** as above
-2. Create a file `{base}/progressions/source-{framework-slug}.md` containing:
+1. Create a file `{base}/progressions/{framework-slug}/source-{framework-slug}.md` containing:
    ```
    # Source
 
@@ -98,7 +97,7 @@ I'll now create progression files for each level."
 
 ### Step 7: Generate Progression Files
 
-For each level/stage identified in Step 4, create a Markdown file in `{base}/progressions/`:
+For each level/stage identified in Step 4, create a Markdown file in `{base}/progressions/{framework-slug}/`:
 
 - **Filename format:** derive from the framework slug and level identifier, using lowercase-hyphenated format
   - Examples: `bsla-taumata-1.md`, `nz-maths-stage-2.md`, `reading-recovery-level-a.md`
@@ -204,7 +203,7 @@ Check if `{base}/CLAUDE.md` exists.
 Summarise what was done:
 
 - Framework name and source (file or URL)
-- Number of progression files created in `{base}/progressions/`
+- Number of progression files created in `{base}/progressions/{framework-slug}/`
 - The frontmatter field added: `{field-key}: {value}`
 - Number of student profiles updated, grouped by class
 - Any profiles that were skipped (field already existed)
@@ -213,7 +212,7 @@ Then tell the teacher:
 
 "The progression has been imported and student profiles updated.
 
-You can view the progression files in `{base}/progressions/` to see the content at each level.
+You can view the progression files in `{base}/progressions/{framework-slug}/` to see the content at each level.
 
 To change a student's level later, edit the `{field-key}` value in their `student-profile.md` frontmatter.
 
