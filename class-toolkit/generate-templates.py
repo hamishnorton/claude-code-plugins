@@ -15,9 +15,13 @@ import zipfile
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMPLATES_DIR = os.path.join(SCRIPT_DIR, "templates")
 
-# Word OOXML namespace
+# Word OOXML namespaces
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+RELS_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
+CT_NS = "http://schemas.openxmlformats.org/package/2006/content-types"
+FOOTER_REL_TYPE = "http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer"
+FOOTER_CT = "application/vnd.openxmlformats-officedocument.wordprocessingml.footer+xml"
 ET.register_namespace("w", W)
 ET.register_namespace("r", R)
 
@@ -211,6 +215,110 @@ def set_page_size_a4(document_xml_bytes):
     return ET.tostring(root, xml_declaration=True, encoding="UTF-8")
 
 
+def create_footer_xml(year_level):
+    """Create footer XML with template name and page number."""
+    ftr = ET.Element(w_tag("ftr"))
+    p = ET.SubElement(ftr, w_tag("p"))
+
+    # Right-align the footer paragraph
+    ppr = ET.SubElement(p, w_tag("pPr"))
+    jc = ET.SubElement(ppr, w_tag("jc"))
+    jc.set(w_tag("val"), "right")
+
+    # Shared run properties: 8pt, grey
+    def make_rpr(parent):
+        rpr = ET.SubElement(parent, w_tag("rPr"))
+        sz = ET.SubElement(rpr, w_tag("sz"))
+        sz.set(w_tag("val"), "16")  # 8pt
+        sz_cs = ET.SubElement(rpr, w_tag("szCs"))
+        sz_cs.set(w_tag("val"), "16")
+        color = ET.SubElement(rpr, w_tag("color"))
+        color.set(w_tag("val"), "808080")
+        return rpr
+
+    # Run: "Year N Template — Page "
+    run1 = ET.SubElement(p, w_tag("r"))
+    make_rpr(run1)
+    t1 = ET.SubElement(run1, w_tag("t"))
+    t1.set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
+    t1.text = f"Year {year_level} Template \u2014 Page "
+
+    # Field code for PAGE number: fldChar begin, instrText, fldChar end
+    run_begin = ET.SubElement(p, w_tag("r"))
+    make_rpr(run_begin)
+    fld_begin = ET.SubElement(run_begin, w_tag("fldChar"))
+    fld_begin.set(w_tag("fldCharType"), "begin")
+
+    run_instr = ET.SubElement(p, w_tag("r"))
+    make_rpr(run_instr)
+    instr = ET.SubElement(run_instr, w_tag("instrText"))
+    instr.set("{http://www.w3.org/XML/1998/namespace}space", "preserve")
+    instr.text = " PAGE "
+
+    run_end = ET.SubElement(p, w_tag("r"))
+    make_rpr(run_end)
+    fld_end = ET.SubElement(run_end, w_tag("fldChar"))
+    fld_end.set(w_tag("fldCharType"), "end")
+
+    return ET.tostring(ftr, xml_declaration=True, encoding="UTF-8")
+
+
+def add_footer_relationship(rels_xml_bytes):
+    """Add footer relationship to document.xml.rels. Returns (modified_bytes, rel_id)."""
+    ET.register_namespace("", RELS_NS)
+    tree = ET.ElementTree(ET.fromstring(rels_xml_bytes))
+    root = tree.getroot()
+
+    # Find next available rId
+    existing_ids = set()
+    for rel in root.findall(f"{{{RELS_NS}}}Relationship"):
+        existing_ids.add(rel.get("Id", ""))
+    n = 1
+    while f"rId{n}" in existing_ids:
+        n += 1
+    rel_id = f"rId{n}"
+
+    rel = ET.SubElement(root, f"{{{RELS_NS}}}Relationship")
+    rel.set("Id", rel_id)
+    rel.set("Type", FOOTER_REL_TYPE)
+    rel.set("Target", "footer1.xml")
+
+    return ET.tostring(root, xml_declaration=True, encoding="UTF-8"), rel_id
+
+
+def add_footer_content_type(content_types_bytes):
+    """Add footer content type override to [Content_Types].xml."""
+    ET.register_namespace("", CT_NS)
+    tree = ET.ElementTree(ET.fromstring(content_types_bytes))
+    root = tree.getroot()
+
+    override = ET.SubElement(root, f"{{{CT_NS}}}Override")
+    override.set("PartName", "/word/footer1.xml")
+    override.set("ContentType", FOOTER_CT)
+
+    return ET.tostring(root, xml_declaration=True, encoding="UTF-8")
+
+
+def add_footer_reference_to_sectpr(document_xml_bytes, rel_id):
+    """Add footer reference to sectPr in document.xml."""
+    tree = ET.ElementTree(ET.fromstring(document_xml_bytes))
+    root = tree.getroot()
+
+    body = root.find(w_tag("body"))
+    if body is None:
+        return document_xml_bytes
+
+    sect_pr = body.find(w_tag("sectPr"))
+    if sect_pr is None:
+        sect_pr = ET.SubElement(body, w_tag("sectPr"))
+
+    footer_ref = ET.SubElement(sect_pr, w_tag("footerReference"))
+    footer_ref.set(w_tag("type"), "default")
+    footer_ref.set(f"{{{R}}}id", rel_id)
+
+    return ET.tostring(root, xml_declaration=True, encoding="UTF-8")
+
+
 def generate_template(year_level, base_docx_path):
     """Generate a reference .docx template for a specific year level."""
     output_path = os.path.join(TEMPLATES_DIR, f"year-{year_level}-ref.docx")
@@ -237,6 +345,31 @@ def generate_template(year_level, base_docx_path):
             doc_xml = f.read()
 
         modified_doc = set_page_size_a4(doc_xml)
+
+        # Add footer with page number and template name
+        footer_xml = create_footer_xml(year_level)
+        footer_path = os.path.join(extract_dir, "word", "footer1.xml")
+        with open(footer_path, "wb") as f:
+            f.write(footer_xml)
+
+        # Add footer relationship
+        rels_path = os.path.join(extract_dir, "word", "_rels", "document.xml.rels")
+        with open(rels_path, "rb") as f:
+            rels_xml = f.read()
+        modified_rels, rel_id = add_footer_relationship(rels_xml)
+        with open(rels_path, "wb") as f:
+            f.write(modified_rels)
+
+        # Add footer content type
+        ct_path = os.path.join(extract_dir, "[Content_Types].xml")
+        with open(ct_path, "rb") as f:
+            ct_xml = f.read()
+        modified_ct = add_footer_content_type(ct_xml)
+        with open(ct_path, "wb") as f:
+            f.write(modified_ct)
+
+        # Add footer reference to document sectPr
+        modified_doc = add_footer_reference_to_sectpr(modified_doc, rel_id)
 
         with open(doc_path, "wb") as f:
             f.write(modified_doc)
