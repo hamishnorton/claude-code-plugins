@@ -2,6 +2,15 @@
 
 All notable changes to the class-toolkit plugin are documented in this file.
 
+## [0.9.0] — 2026-03-29
+
+### Added
+
+- Generate-progression skill for importing educational progressions, scope and sequences, or curriculum frameworks
+- Analyses resources (files or URLs) and creates structured progression files
+- Recommends and applies tracking frontmatter fields to student profiles
+- Supports applying values uniformly or individually per student
+
 ## [0.8.2] — 2026-03-28
 
 ### Changed
