@@ -186,7 +186,23 @@ For each student profile:
 5. Use the teacher's response, or the default if they confirm or leave blank
 6. Add the field to the frontmatter and write the updated file
 
-### Step 12: Update CLAUDE.md
+### Step 12: Update Student Profile Template
+
+So that students added in future (via `/init-class` or manually) also include this tracking field, update the template file.
+
+1. Check if `{base}/templates/student-profile-template.md` exists
+2. If it does not exist, skip this step
+3. Read the template
+4. Check if the YAML frontmatter already contains the `{field-key}` field
+   - If it already exists, skip — do not overwrite
+5. If it does not exist, add `{field-key}: {default-value}` as a new line in the YAML frontmatter (after the last existing field, before the closing `---`)
+6. Write the updated content back
+
+Use the **default value** from Step 8 — not any per-student value chosen in Step 10 — because the template is a starting point for new students.
+
+Tell the teacher: "Updated the student profile template so any new students will automatically include `{field-key}`."
+
+### Step 13: Update CLAUDE.md
 
 Check if `{base}/CLAUDE.md` exists.
 
@@ -198,7 +214,7 @@ Check if `{base}/CLAUDE.md` exists.
 
 **If it does not exist:** skip this step.
 
-### Step 13: Report and Next Steps
+### Step 14: Report and Next Steps
 
 Summarise what was done:
 
@@ -207,6 +223,7 @@ Summarise what was done:
 - The frontmatter field added: `{field-key}: {value}`
 - Number of student profiles updated, grouped by class
 - Any profiles that were skipped (field already existed)
+- Whether the student profile template was updated
 
 Then tell the teacher:
 

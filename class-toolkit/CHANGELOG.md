@@ -2,6 +2,12 @@
 
 All notable changes to the class-toolkit plugin are documented in this file.
 
+## [0.11.0] — 2026-04-15
+
+### Added
+
+- generate-progression now also adds the tracking field to `templates/student-profile-template.md` so new students created later automatically include the field
+
 ## [0.10.1] — 2026-04-15
 
 ### Changed
