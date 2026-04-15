@@ -32,11 +32,11 @@ Only bump once per push — if `plugin.json` already has an unpushed version bum
 
 ## Structural Changes
 
-When moving files, renaming directories, adding top-level folders, or changing frontmatter fields, also update the migration step (Step 3) in `skills/update-plugin/SKILL.md`. Add a new sub-step that detects the old layout and migrates to the new one. This is the only mechanism for existing users to transition after updating.
+When moving files, renaming directories, adding top-level folders, or changing frontmatter fields, also update the migration step (Step 3) in `skills/class-toolkit-update/SKILL.md`. Add a new sub-step that detects the old layout and migrates to the new one. This is the only mechanism for existing users to transition after updating.
 
 ## Update Plugin
 
-Use the `/update-plugin` skill to update the class-toolkit plugin to the latest version. The underlying commands are:
+Use the `/class-toolkit:class-toolkit-update` skill to update the class-toolkit plugin to the latest version. The underlying commands are:
 
 ```bash
 claude plugin marketplace update hamishnorton

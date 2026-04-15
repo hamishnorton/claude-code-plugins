@@ -2,6 +2,12 @@
 
 All notable changes to the class-toolkit plugin are documented in this file.
 
+## [0.10.1] — 2026-04-15
+
+### Changed
+
+- Renamed the `update-plugin` skill to `class-toolkit-update`; the slash command is now `/class-toolkit:class-toolkit-update`
+
 ## [0.10.0] — 2026-03-29
 
 ### Added

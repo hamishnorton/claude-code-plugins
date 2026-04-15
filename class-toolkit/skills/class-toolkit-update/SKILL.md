@@ -1,5 +1,5 @@
 ---
-name: update-plugin
+name: class-toolkit-update
 description: "Update the class-toolkit plugin to the latest version. Use when the user wants to update, upgrade, or get the latest version of the class-toolkit plugin. Also use when the user says things like 'update the plugin', 'check for updates', 'get the latest version', or 'upgrade class-toolkit'."
 ---
 
