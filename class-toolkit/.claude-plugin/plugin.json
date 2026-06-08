@@ -1,14 +1,14 @@
 {
   "name": "class-toolkit",
   "description": "Generate personalised educational resources for each student in the class",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "hooks": {
     "SessionStart": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "pandoc --version || echo \"[class-toolkit] pandoc is not installed. The generate-resource skill requires pandoc to create Word documents. Install from: https://pandoc.org/installing.html\""
+            "command": "node -e \"try{require('child_process').execSync('pandoc --version',{stdio:'ignore'})}catch(e){process.exit(1)}\" || echo \"[class-toolkit] pandoc is not installed. The generate-resource skill requires pandoc to create Word documents. Install from: https://pandoc.org/installing.html\""
           }
         ]
       }
